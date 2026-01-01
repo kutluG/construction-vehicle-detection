@@ -29,11 +29,26 @@ A YOLO11-based object detection system for construction sites, trained to detect
 ### 1. Clone the Repository
 
 ```bash
-git clone <your-repo-url>
-cd davoski-yolo
+git clone https://github.com/kutluG/construction-vehicle-detection.git
+cd construction-vehicle-detection
 ```
 
-### 2. Install Dependencies
+### 2. Automated Setup (Windows)
+
+**Easy way** - Run the setup script which automatically installs dependencies and downloads the model:
+```bash
+setup.bat
+```
+
+The setup script will:
+- ✓ Check Python installation
+- ✓ Install required packages
+- ✓ Automatically download the trained model (109 MB) from GitHub releases
+- ✓ Create necessary folder structure
+
+### 3. Manual Setup (All Platforms)
+
+**Step 1: Install Dependencies**
 
 **Option A: Using pip (recommended)**
 ```bash
@@ -45,22 +60,26 @@ pip install -r requirements.txt
 pip install torch ultralytics opencv-python streamlit pillow numpy
 ```
 
-### 3. Download the Trained Model
+**Step 2: Download the Trained Model**
 
 **Important**: The trained model weights are not included in the repository due to file size.
 
 **Download the pre-trained YOLO11x model:**
 
-1. Download from releases:
+1. Automatic download (Windows):
+   - Already done if you ran `setup.bat`
+   
+2. Manual download:
    ```bash
    # Windows PowerShell
    Invoke-WebRequest -Uri "https://github.com/kutluG/construction-vehicle-detection/releases/download/v1.0.0/best.pt" -OutFile "runs/detect/y11x_10ep/weights/best.pt"
    
    # Linux/Mac
+   mkdir -p runs/detect/y11x_10ep/weights
    wget https://github.com/kutluG/construction-vehicle-detection/releases/download/v1.0.0/best.pt -P runs/detect/y11x_10ep/weights/
    ```
 
-2. Or download manually:
+3. Or download from browser:
    - Go to [Releases](https://github.com/kutluG/construction-vehicle-detection/releases/tag/v1.0.0)
    - Download `best.pt` (109 MB)
    - Create folders: `runs/detect/y11x_10ep/weights/`
