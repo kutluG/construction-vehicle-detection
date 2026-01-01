@@ -47,16 +47,28 @@ pip install torch ultralytics opencv-python streamlit pillow numpy
 
 ### 3. Download the Trained Model
 
-**Important**: The trained model weights are not included in the repository due to file size. You have two options:
+**Important**: The trained model weights are not included in the repository due to file size.
 
-**Option A: Download from release** (if you uploaded to GitHub releases)
-1. Go to the Releases page
-2. Download `best.pt`
-3. Place it in: `runs/detect/y11s_all_vehicles/weights/best.pt`
+**Download the pre-trained YOLO11x model:**
 
-**Option B: Train your own model** (requires dataset)
+1. Download from releases:
+   ```bash
+   # Windows PowerShell
+   Invoke-WebRequest -Uri "https://github.com/kutluG/construction-vehicle-detection/releases/download/v1.0.0/best.pt" -OutFile "runs/detect/y11x_10ep/weights/best.pt"
+   
+   # Linux/Mac
+   wget https://github.com/kutluG/construction-vehicle-detection/releases/download/v1.0.0/best.pt -P runs/detect/y11x_10ep/weights/
+   ```
+
+2. Or download manually:
+   - Go to [Releases](https://github.com/kutluG/construction-vehicle-detection/releases/tag/v1.0.0)
+   - Download `best.pt` (109 MB)
+   - Create folders: `runs/detect/y11x_10ep/weights/`
+   - Place the file there
+
+**Alternative: Train your own model** (requires dataset)
 ```bash
-python train.py --weights yolo11s.pt --data data_vehicles.yaml --epochs 100 --batch 8
+python train.py --weights yolo11x.pt --data data_vehicles.yaml --epochs 10 --batch 4
 ```
 
 ### 4. Run the Web Application
@@ -99,9 +111,9 @@ davoski-yolo/
 ├── data_vehicles.yaml              # Dataset configuration
 ├── input/                          # Input images folder
 ├── output/                         # Processed images output
-├── runs/detect/y11s_all_vehicles/  # Trained model location
+├── runs/detect/y11x_10ep/          # Trained model location
 │   └── weights/
-│       └── best.pt                 # YOLO11s trained weights (download separately)
+│       └── best.pt                 # YOLO11x trained weights (download from releases)
 └── dataset/                        # Training dataset (optional)
 ```
 
@@ -136,8 +148,8 @@ python main.py image.jpg --model path/to/model.pt
 ## 🔧 Troubleshooting
 
 ### Model Not Found Error
-- Download the trained model weights (see step 3 above)
-- Verify the file exists at: `runs/detect/y11s_all_vehicles/weights/best.pt`
+- Download the trained model weights from [GitHub Releases](https://github.com/kutluG/construction-vehicle-detection/releases/tag/v1.0.0)
+- Verify the file exists at: `runs/detect/y11x_10ep/weights/best.pt`
 
 ### CUDA/GPU Issues
 - The model will automatically use CPU if GPU is not available
@@ -154,12 +166,12 @@ python main.py image.jpg --model path/to/model.pt
 
 | Class | Precision | Recall | mAP50 | mAP50-95 |
 |-------|-----------|--------|-------|----------|
-| Overall | 92.8% | 78.1% | 84.5% | 56.7% |
-| Machinery | 95.4% | 90.9% | 95.2% | 70.4% |
-| Mask | 98.2% | 90.5% | 91.5% | 70.2% |
-| Safety Vest | 100% | 87.0% | 89.8% | 64.8% |
+| Overall | 86.2% | 66.1% | 73.8% | 38.2% |
+| Hardhat | 92.6% | 74.7% | 82.3% | 47.9% |
+| Machinery | 75.7% | 76.4% | 82.5% | 46.1% |
+| Mask | 94.3% | 85.7% | 86.0% | 49.9% |
 
-Trained for 100 epochs (2.5 hours) on NVIDIA RTX 4060.
+Trained for 10 epochs (33 minutes) on NVIDIA RTX 4060.
 
 ## 🎓 Training Your Own Model
 
