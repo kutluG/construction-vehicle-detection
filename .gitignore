@@ -1,0 +1,44 @@
+# Folders
+dataset/
+runs/
+output/*.jpg
+output/*.png
+input/*.jpg
+input/*.png
+
+# Model weights (too large for git - download separately)
+*.pt
+*.onnx
+!yolo*.pt
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+*.egg-info/
+dist/
+build/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.bak
+*.cache

@@ -1,0 +1,24 @@
+path: C:/Users/kutlu/OneDrive/Desktop/davoski-yolo/dataset/construction_vehicles
+train: train/images
+val: valid/images
+test: test/images
+
+names:
+- Hardhat
+- Mask
+- NO-Hardhat
+- NO-Mask
+- NO-Safety Vest
+- Person
+- Safety Cone
+- Safety Vest
+- machinery
+- vehicle
+nc: 10
+
+roboflow:
+  license: CC BY 4.0
+  project: construction-site-safety
+  url: https://universe.roboflow.com/roboflow-universe-projects/construction-site-safety/dataset/27
+  version: 27
+  workspace: roboflow-universe-projects
